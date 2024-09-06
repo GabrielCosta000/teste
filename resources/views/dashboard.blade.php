@@ -1,6 +1,4 @@
 <x-app-layout>
-
-
     <div class="flex justify-center mt-10">
         <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow text-justify">
             <a href="#">
@@ -16,8 +14,5 @@
             </a>
         </div>
     </div>
-
-
-    
 
 </x-app-layout>

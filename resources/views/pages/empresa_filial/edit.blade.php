@@ -123,7 +123,7 @@
                         <label
                             for="email"
                             class="block text-sm font-bold text-gray-600">
-                            Selecione a empresa matrix
+                            Selecione a Empresa Matriz
                         </label>
                         <select
                             disabled

@@ -20,8 +20,8 @@ class EmpresaFilialController extends Controller
      */
     public function index()
     {
-        $empresa_filial = empresa_filial::all();
-        
+        $empresa_filial = Empresa_filial::all();
+        $empresa_filial = Empresa_filial::with('empresa')->get();
         
         
 
@@ -47,22 +47,18 @@ class EmpresaFilialController extends Controller
      */
     public function create()
     {
-        $empresas = empresa::all();
+        $empresas = Empresa::all();
         return view("pages.empresa_filial.create", ['empresas' => $empresas]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
             'email' => 'required|unique:empresas',
-        ],['email.unique' => 'Este email já está sendo utilizado.',
-        
+        ],[
+            'email.unique' => 'Este email já está sendo utilizado.',
         ]);
-    
-        // Criando a empresa
+
         $created = $this->empresa_filial->create([
             'nome_empresa' => $request->input('nome_empresa'),
             'empresas_id' => $request->input('empresas_id'),
@@ -73,14 +69,12 @@ class EmpresaFilialController extends Controller
             'email' => $request->input('email'),
             'whatsapp' => $request->input('whatsapp'),
         ]); 
+
         if ($created) {
             return redirect()->route('empresa_filial.index')->with('message', 'Filial cadastrada com sucesso');
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Empresa_filial $empresa_filial)
     {
         $id = $empresa_filial->id;
